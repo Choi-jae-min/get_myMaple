@@ -2,10 +2,12 @@ from fastapi import FastAPI
 from dotenv import load_dotenv
 load_dotenv()
 
-from app.routes.character_routes import router as maple_router
+from app.routes.character_routes import router as character_router
+from app.routes.item_routes import router as item_router
 
 app = FastAPI()
-app.include_router(maple_router)
+app.include_router(character_router)
+app.include_router(item_router)
 
 
 @app.get("/")
