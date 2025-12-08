@@ -61,7 +61,7 @@ async def get_maple_character_by_id(id: str, date: Optional[str] = None):
     return res.json()
 
 @router.get("/maple/character/popularity/{id}")
-async def get_maple_character_by_id(id: str, date: Optional[str] = None):
+async def get_maple_character_popularity_by_id(id: str, date: Optional[str] = None):
     api_key = os.getenv("NEXON_API_KEY")
     base_url = os.getenv("NEXON_BASE_URL")
 
@@ -75,6 +75,27 @@ async def get_maple_character_by_id(id: str, date: Optional[str] = None):
     async with httpx.AsyncClient() as client:
         res = await client.get(
             f"{base_url}/maplestory/v1/character/popularity",
+            params=params,
+            headers={"x-nxopen-api-key": api_key}
+        )
+
+    return res.json()
+
+@router.get("/maple/character/stat/{id}")
+async def get_maple_character_stat_by_id(id: str, date: Optional[str] = None):
+    api_key = os.getenv("NEXON_API_KEY")
+    base_url = os.getenv("NEXON_BASE_URL")
+
+    if not api_key:
+        raise HTTPException(status_code=500, detail="NEXON_API_KEY is not configured")
+
+    params = {"ocid": id}
+    if date:
+        params["date"] = date
+
+    async with httpx.AsyncClient() as client:
+        res = await client.get(
+            f"{base_url}/maplestory/v1/character/stat",
             params=params,
             headers={"x-nxopen-api-key": api_key}
         )
