@@ -77,3 +77,12 @@ async def get_character_stat(id: str, date: Optional[str] = None):
         params["date"] = date
 
     return await nexon.get("/maplestory/v1/character/item-equipment", params=params)
+
+@router.get("/maple/character/cashitem-equipment/{id}")
+async def get_character_stat(id: str, date: Optional[str] = None):
+    params = {"ocid": id}
+    if date:
+        params["date"] = date
+
+    return await nexon.get("/maplestory/v1/character/cashitem-equipment", params=params)
+
