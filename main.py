@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from dotenv import load_dotenv
-from app.routes.maple_routes import router as maple_router
+from app.routes.character_routes import router as maple_router
 
 load_dotenv()
 app = FastAPI()
