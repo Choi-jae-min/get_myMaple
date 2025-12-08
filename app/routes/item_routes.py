@@ -34,3 +34,10 @@ async def get_character_stat(id: str, date: Optional[str] = None):
     return await nexon.get("/maplestory/v1/character/symbol-equipment", params=params)
 
 
+@router.get("/maple/character/set-effect/{id}",tags=["Equipment"])
+async def get_character_stat(id: str, date: Optional[str] = None):
+    params = {"ocid": id}
+    if date:
+        params["date"] = date
+
+    return await nexon.get("/maplestory/v1/character/set-effect", params=params)
