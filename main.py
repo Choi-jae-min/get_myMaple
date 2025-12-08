@@ -1,7 +1,10 @@
 from fastapi import FastAPI
-from pydantic import BaseModel
+from dotenv import load_dotenv
+from app.routes.maple_routes import router as maple_router
 
+load_dotenv()
 app = FastAPI()
+app.include_router(maple_router)
 
 
 @app.get("/")
