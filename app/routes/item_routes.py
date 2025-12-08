@@ -41,3 +41,28 @@ async def get_character_stat(id: str, date: Optional[str] = None):
         params["date"] = date
 
     return await nexon.get("/maplestory/v1/character/set-effect", params=params)
+
+@router.get("/maple/character/beauty-equipment/{id}",tags=["Equipment"])
+async def get_character_stat(id: str, date: Optional[str] = None):
+    params = {"ocid": id}
+    if date:
+        params["date"] = date
+
+    return await nexon.get("/maplestory/v1/character/beauty-equipment", params=params)
+
+
+@router.get("/maple/character/android-equipment/{id}",tags=["Equipment"])
+async def get_character_stat(id: str, date: Optional[str] = None):
+    params = {"ocid": id}
+    if date:
+        params["date"] = date
+
+    return await nexon.get("/maplestory/v1/character/beauty-equipment", params=params)
+
+@router.get("/maple/character/pet-equipment/{id}",tags=["Equipment"])
+async def get_character_stat(id: str, date: Optional[str] = None):
+    params = {"ocid": id}
+    if date:
+        params["date"] = date
+
+    return await nexon.get("/maplestory/v1/character/pet-equipment", params=params)
