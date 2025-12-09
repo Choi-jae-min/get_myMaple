@@ -66,3 +66,21 @@ async def get_character_stat(id: str, date: Optional[str] = None):
         params["date"] = date
 
     return await nexon.get("/maplestory/v1/character/ability", params=params)
+
+
+@router.get("/maple/character/dojang/{id}",tags=["character"])
+async def get_character_stat(id: str, date: Optional[str] = None):
+    params = {"ocid": id}
+    if date:
+        params["date"] = date
+
+    return await nexon.get("/maplestory/v1/character/dojang", params=params)
+
+
+@router.get("/maple/character/other-stat/{id}",tags=["character"])
+async def get_character_stat(id: str, date: Optional[str] = None):
+    params = {"ocid": id}
+    if date:
+        params["date"] = date
+
+    return await nexon.get("/maplestory/v1/character/other-stat", params=params)
