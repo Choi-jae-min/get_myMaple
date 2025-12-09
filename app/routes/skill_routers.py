@@ -15,3 +15,11 @@ async def get_character_skill(id: str,character_skill_grade : SkillGrade, date: 
         params["date"] = date
     return await nexon.get("/maplestory/v1/character/skill", params=params)
 
+@router.get("/maple/character/link-skill/{id}",
+            tags=["Skill"])
+async def get_character_link_skill(id: str, date: Optional[str] = None):
+    params = {"ocid": id}
+    if date:
+        params["date"] = date
+    return await nexon.get("/maplestory/v1/character/link-skill", params=params)
+
